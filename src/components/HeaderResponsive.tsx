@@ -11,6 +11,8 @@ import {
   Anchor,
   Center,
   Space,
+  Menu,
+  Drawer,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import header from './img/header.svg';
@@ -29,22 +31,6 @@ const useStyles = createStyles((theme) => ({
       backgroundPosition: '0% 100%',
     },
     zIndex: 0,
-  },
-
-  dropdown: {
-    position: 'absolute',
-    top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
-    zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopWidth: 0,
-    overflow: 'hidden',
-
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
   },
 
   header: {
@@ -84,11 +70,11 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
       padding: theme.spacing.md,
-      backgroundColor: theme.colors.brand[4],
-      color: theme.colors.dark[9],
+      backgroundColor: theme.colors.dark[7],
+      color: theme.colors.brand[4],
       '&:hover': {
-        backgroundColor: theme.colors.dark[9],
-        color: theme.colors.brand[4],
+        backgroundColor: theme.colors.brand[4],
+        color: theme.colors.dark[5],
       },
     },
   },
@@ -146,37 +132,29 @@ export function HeaderResponsive(): ReactElement {
   ));
 
   return (
-    <>
-      <Header height={HEADER_HEIGHT} className={classes.root} >
-        <Container className={classes.header}>
-          <Title order={2} transform="uppercase" color='white'>
-            <Center>
-              {/* <img src={logo} alt="Manobras para Vida" height={36} /> */}
-              <Space w="xs" />
-              Manobras para Vida
-            </Center>
-          </Title>
-          <Group spacing={5} className={classes.links}>
-            {items}
-          </Group>
-
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            className={classes.burger}
-            size="sm"
-          />
-        </Container>
-      </Header>
+    <Header height={HEADER_HEIGHT} className={classes.root} >
       <Container className={classes.header}>
-        <Transition transition="scale-y" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
+        <Title order={2} transform="uppercase" color='white'>
+          <Center>
+            {/* <img src={logo} alt="Manobras para Vida" height={36} /> */}
+            <Space w="xs" />
+            Manobras para Vida
+          </Center>
+        </Title>
+        <Group spacing={5} className={classes.links}>
+          {items}
+        </Group>
+
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
+        <Drawer opened={opened} onClose={close} position='right'>
+          {items}
+        </Drawer>
       </Container>
-    </>
+    </Header>
   );
 }
