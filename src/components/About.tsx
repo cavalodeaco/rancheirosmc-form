@@ -121,7 +121,7 @@ import {
             p="xl"
             className={classes.title}
           >
-            Curso de pilotagem defensiva <Text>Manobras para Vida</Text>
+            Curso de pilotagem defensiva MANOBRAS PARA VIDA
           </Title>
   
           <Text align="center" size="md">

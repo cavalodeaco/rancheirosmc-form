@@ -308,7 +308,7 @@ export default function EnrollmentForm(): ReactElement {
         {active !== 3 && (
           <Group position="right" mt="xl">
             {active !== 0 && (
-              <Button variant="light" onClick={prevStep}>
+              <Button variant="outline" onClick={prevStep}>
                 Anterior
               </Button>
             )}

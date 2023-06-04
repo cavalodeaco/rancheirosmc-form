@@ -19,6 +19,7 @@ const useStyles = createStyles((theme) => ({
     minHeight: 400,
     boxSizing: "border-box",
     borderRadius: 0,
+    backgroundColor: "#2B0604",
     padding: "5rem",
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
@@ -26,11 +27,6 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    color: theme.white,
-    lineHeight: 1,
-  },
 
   description: {
     color: "white",
@@ -48,9 +44,7 @@ const useStyles = createStyles((theme) => ({
 
   formBox: {
     borderRadius: theme.spacing.sm,
-    backgroundImage: `linear-gradient(275deg, ${
-      theme.colors[theme.primaryColor][6]
-    } 0%, ${theme.colors[theme.primaryColor][8]} 100%)`,
+    backgroundColor: "#4E3120",
     padding: "1rem",
   },
 }));
@@ -60,7 +54,7 @@ function Warning({ text }: { text: string }): ReactElement {
   return (
     <Text className={classes.description} mt="sm" mb={30}>
       <Center inline>
-        <ThemeIcon variant="filled" size={30} radius={30}>
+        <ThemeIcon variant="outline" size={30} radius={30}>
           <IconTrafficCone size={20} stroke={1.5} />
         </ThemeIcon>
         <Space w="xs" />
@@ -75,8 +69,8 @@ export default function Enrollment(): ReactElement {
 
   return (
     <div className={classes.wrapper}>
-      <Title className={classes.title} my={30} order={3}>
-        Inscreva-se no Manobras para Vida
+      <Title my={30} order={3}>
+        INSCREVA-SE NO MANOBRAS PARA VIDA
       </Title>
       <SimpleGrid
         cols={2}
@@ -91,7 +85,7 @@ export default function Enrollment(): ReactElement {
           <Warning text="O curso não fornece a moto para o treinamento." />
           <Text className={classes.description} mt="sm" mb={30}>
             <Center inline>
-              <ThemeIcon variant="filled" size={30} radius={30}>
+              <ThemeIcon variant="outline" size={30} radius={30}>
                 <IconTrafficCone size={20} stroke={1.5} />
               </ThemeIcon>
               <Space w="xs" />
