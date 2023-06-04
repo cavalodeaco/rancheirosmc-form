@@ -13,14 +13,22 @@ import {
   Space,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import logo from './img/logo.webp';
+import header from './img/header.svg';
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 80;
 
 const useStyles = createStyles((theme) => ({
   root: {
-    position: 'fixed',
-    zIndex: 2,
+    position: 'absolute',
+    backgroundImage: `url(${header})`,
+    backgroundColor: '#f5e02c',
+    backgroundSize: 'contain',
+    borderBottom: `0px`,
+    ['@media (max-width: 600px)']: {
+      backgroundSize: 'cover',
+      backgroundPosition: '0% 100%',
+    },
+    zIndex: 0,
   },
 
   dropdown: {
@@ -69,12 +77,19 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
 
     '&:hover': {
-      backgroundColor: theme.colors.dark[6],
+      backgroundColor: theme.colors.brand[4],
+      color: theme.colors.dark[9],
     },
 
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
       padding: theme.spacing.md,
+      backgroundColor: theme.colors.brand[4],
+      color: theme.colors.dark[9],
+      '&:hover': {
+        backgroundColor: theme.colors.dark[9],
+        color: theme.colors.brand[4],
+      },
     },
   },
 
@@ -110,7 +125,7 @@ const links = [
 
 export function HeaderResponsive(): ReactElement {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState<string | undefined>();
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
@@ -131,26 +146,29 @@ export function HeaderResponsive(): ReactElement {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} className={classes.root}>
+    <>
+      <Header height={HEADER_HEIGHT} className={classes.root} >
+        <Container className={classes.header}>
+          <Title order={2} transform="uppercase" color='white'>
+            <Center>
+              {/* <img src={logo} alt="Manobras para Vida" height={36} /> */}
+              <Space w="xs" />
+              Manobras para Vida
+            </Center>
+          </Title>
+          <Group spacing={5} className={classes.links}>
+            {items}
+          </Group>
+
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            className={classes.burger}
+            size="sm"
+          />
+        </Container>
+      </Header>
       <Container className={classes.header}>
-        <Title order={2} transform="uppercase" color='white'>
-          <Center>
-            {/* <img src={logo} alt="Manobras para Vida" height={36} /> */}
-            <Space w="xs" />
-            Manobras para Vida
-          </Center>
-        </Title>
-        <Group spacing={5} className={classes.links}>
-          {items}
-        </Group>
-
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
-
         <Transition transition="scale-y" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
@@ -159,6 +177,6 @@ export function HeaderResponsive(): ReactElement {
           )}
         </Transition>
       </Container>
-    </Header>
+    </>
   );
 }
