@@ -3,10 +3,11 @@ import { ReactElement } from "react";
 import banner from "./img/background.jpeg";
 import faixa from "./img/faixa.svg";
 import logao from "./img/logao.svg";
+import fundo from "./img/fundo.webp";
 
 const useStyles = createStyles((theme) => ({
   banner: {
-    height: "160px",
+    height: "120px",
     backgroundImage: `url(${faixa})`,
     backgroundSize: 'contain',
     borderBottom: `0px`,
@@ -15,18 +16,30 @@ const useStyles = createStyles((theme) => ({
       backgroundPosition: '0% 100%',
     },
     marginTop: '-8px',
+    position: 'relative',
+    zIndex: 2,
   },
   logao: {
     height: "240px",
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    marginTop: '-180px',
+    marginTop: '-140px',
     position: 'relative',
-    zIndex: 2,
+    zIndex: 3,
     backgroundImage: `url(${logao})`,
     backgroundColor: '#00000000',
-  }
+  },
+  fundo: {
+    backgroundImage: `url(${fundo})`,
+    scale: '1/1',
+    minHeight: '600px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    marginTop: '-110px',
+    position: 'relative',
+    zIndex: 1,
+  },
 
 }));
 
@@ -38,6 +51,8 @@ export default function Banner(): ReactElement {
       <div className={classes.banner}>
       </div>
       <div className={classes.logao}>
+      </div>
+      <div className={classes.fundo}>
       </div>
     </>
   );

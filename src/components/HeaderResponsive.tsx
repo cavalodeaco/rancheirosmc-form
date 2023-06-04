@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
       backgroundSize: 'cover',
       backgroundPosition: '0% 100%',
     },
-    zIndex: 0,
+    zIndex: 3,
   },
 
   header: {
@@ -81,12 +81,8 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor: theme.fn.variant({
-        variant: 'filled',
-        color: theme.primaryColor,
-      }).background,
-      color: theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-        .color,
+      backgroundColor: theme.colors.brand[4],
+      color: theme.colors.dark[9],
     },
   },
 }));
@@ -94,7 +90,7 @@ const useStyles = createStyles((theme) => ({
 const links = [
   {
     link: '/#sobre',
-    label: 'Sobre',
+    label: 'Sobre o treinamento',
     target: '_self',
   },
   {
