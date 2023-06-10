@@ -4,7 +4,7 @@ export const theme: MantineThemeOverride = {
   colorScheme: "dark",
   colors: {
     brand: [
-        "#E4E0C3",
+        "#F2F09E",
         "#DED7A3",
         "#DED480",
         "#E5D659",

@@ -20,7 +20,7 @@ const useStyles = createStyles((theme) => ({
     minHeight: 400,
     boxSizing: "border-box",
     borderRadius: 0,
-    backgroundColor: theme.colors.brand[4],
+    backgroundColor: theme.colors.brand[0],
     color: '#2B0604',
     // padding: "5rem",
     marginTop: "-110px",
@@ -50,7 +50,7 @@ const useStyles = createStyles((theme) => ({
 
   formBox: {
     borderRadius: theme.spacing.sm,
-    backgroundColor: "#F2F09E",
+    backgroundColor: theme.colors.brand[4],
     padding: "1rem",
   },
 }));
@@ -60,7 +60,7 @@ function Warning({ text }: { text: string }): ReactElement {
   return (
     <Text className={classes.description} mt="sm" mb={30}>
       <Center inline>
-        <ThemeIcon variant="filled" size={30} radius={30}>
+        <ThemeIcon variant="filled" size={30} radius={30} color="brand.0">
           <IconTrafficCone size={20} stroke={1.5} color="#2B0604"/>
         </ThemeIcon>
         <Space w="xs" />
@@ -81,7 +81,6 @@ export default function Enrollment(): ReactElement {
         </Title>
         <SimpleGrid
           cols={2}
-          // spacing={50}
           breakpoints={[{ maxWidth: "md", cols: 1 }]}
         >
           <EnrollmentForm />
@@ -92,7 +91,7 @@ export default function Enrollment(): ReactElement {
             <Warning text="O curso não fornece a moto para o treinamento." />
             <Text className={classes.description} mt="sm" mb={30}>
               <Center inline>
-                <ThemeIcon variant="filled" size={30} radius={30} >
+                <ThemeIcon variant="filled" size={30} radius={30} color="brand.0">
                   <IconTrafficCone size={20} stroke={1.5} color="#2B0604"/>
                 </ThemeIcon>
                 <Space w="xs" />
