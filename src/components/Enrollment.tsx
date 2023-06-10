@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
     // padding: "5rem",
     marginTop: "-110px",
     position: "relative",
-    paddingTop: `calc(110px + ${theme.spacing.xl}px)`,
+    paddingTop: `calc(110px)`,
     paddingBottom: theme.spacing.xl,
     zIndex: 1,
 
@@ -77,7 +77,7 @@ export default function Enrollment(): ReactElement {
     <div className={classes.wrapper}>
       <Container>
         <Title my={30} order={3}>
-          INSCREVA-SE NO MANOBRAS PARA VIDA
+          INSCREVA-SE:
         </Title>
         <SimpleGrid
           cols={2}
