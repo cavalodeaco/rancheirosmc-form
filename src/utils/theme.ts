@@ -13,13 +13,13 @@ export const theme: MantineThemeOverride = {
         "#B9AB31",
         "#9A9038",
         "#827B3B",
-        "#6F693C"
+        "#2B0604"
     ],
   },
   primaryColor: 'brand',
   primaryShade: 4,
   headings: {
-    fontFamily: `'Lilita One', cursive`,
-    fontWeight: 'normal',
+    fontFamily: `'Lato', sans-serif`,
+    fontWeight: 'bold',
   },
 };

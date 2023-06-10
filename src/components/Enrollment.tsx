@@ -8,6 +8,7 @@ import {
   Center,
   Box,
   Anchor,
+  Container,
 } from "@mantine/core";
 import "dayjs/locale/pt-br";
 import { ReactElement } from "react";
@@ -19,17 +20,22 @@ const useStyles = createStyles((theme) => ({
     minHeight: 400,
     boxSizing: "border-box",
     borderRadius: 0,
-    backgroundColor: "#2B0604",
-    padding: "5rem",
+    backgroundColor: theme.colors.brand[4],
+    color: '#2B0604',
+    // padding: "5rem",
+    marginTop: "-110px",
+    position: "relative",
+    paddingTop: `calc(110px + ${theme.spacing.xl}px)`,
+    paddingBottom: theme.spacing.xl,
+    zIndex: 1,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      padding: '3rem 0.5rem',
-    },
+    // [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    //   padding: '3rem 0.5rem',
+    // },
   },
 
-
   description: {
-    color: "white",
+    color: "#2B0604",
     maxWidth: "100%",
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
@@ -38,13 +44,13 @@ const useStyles = createStyles((theme) => ({
   },
 
   anchor: {
-    color: "white",
+    color: "#2B0604",
     textDecoration: "underline",
   },
 
   formBox: {
     borderRadius: theme.spacing.sm,
-    backgroundColor: "#4E3120",
+    backgroundColor: "#F2F09E",
     padding: "1rem",
   },
 }));
@@ -54,8 +60,8 @@ function Warning({ text }: { text: string }): ReactElement {
   return (
     <Text className={classes.description} mt="sm" mb={30}>
       <Center inline>
-        <ThemeIcon variant="outline" size={30} radius={30}>
-          <IconTrafficCone size={20} stroke={1.5} />
+        <ThemeIcon variant="filled" size={30} radius={30}>
+          <IconTrafficCone size={20} stroke={1.5} color="#2B0604"/>
         </ThemeIcon>
         <Space w="xs" />
         {text}
@@ -69,33 +75,35 @@ export default function Enrollment(): ReactElement {
 
   return (
     <div className={classes.wrapper}>
-      <Title my={30} order={3}>
-        INSCREVA-SE NO MANOBRAS PARA VIDA
-      </Title>
-      <SimpleGrid
-        cols={2}
-        spacing={50}
-        breakpoints={[{ maxWidth: "sm", cols: 1 }]}
-      >
-        <EnrollmentForm />
-        <Box className={classes.formBox}>
-          <Warning text="O curso geralmente ocorre aos sábados das 8h às 14h." />
-          <Warning text="Tenha paciência, estamos com fila de espera." />
-          <Warning text="Entraremos em contato quando tivermos uma turma com vagas." />
-          <Warning text="O curso não fornece a moto para o treinamento." />
-          <Text className={classes.description} mt="sm" mb={30}>
-            <Center inline>
-              <ThemeIcon variant="outline" size={30} radius={30}>
-                <IconTrafficCone size={20} stroke={1.5} />
-              </ThemeIcon>
-              <Space w="xs" />
-              <Anchor href="#sobre" className={classes.anchor}>
-                Saiba mais
-              </Anchor>
-            </Center>
-          </Text>
-        </Box>
-      </SimpleGrid>
+      <Container>
+        <Title my={30} order={3}>
+          INSCREVA-SE NO MANOBRAS PARA VIDA
+        </Title>
+        <SimpleGrid
+          cols={2}
+          // spacing={50}
+          breakpoints={[{ maxWidth: "md", cols: 1 }]}
+        >
+          <EnrollmentForm />
+          <Box className={classes.formBox}>
+            <Warning text="O curso geralmente ocorre aos sábados das 8h às 14h." />
+            <Warning text="Tenha paciência, estamos com fila de espera." />
+            <Warning text="Entraremos em contato quando tivermos uma turma com vagas." />
+            <Warning text="O curso não fornece a moto para o treinamento." />
+            <Text className={classes.description} mt="sm" mb={30}>
+              <Center inline>
+                <ThemeIcon variant="filled" size={30} radius={30} >
+                  <IconTrafficCone size={20} stroke={1.5} color="#2B0604"/>
+                </ThemeIcon>
+                <Space w="xs" />
+                <Anchor href="#sobre" className={classes.anchor}>
+                  Saiba mais
+                </Anchor>
+              </Center>
+            </Text>
+          </Box>
+        </SimpleGrid>
+      </Container>
     </div>
   );
 }

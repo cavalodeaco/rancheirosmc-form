@@ -1,4 +1,4 @@
-import { Center, createStyles, MediaQuery, Title } from "@mantine/core";
+import { Center, createStyles, Image, MediaQuery, Title } from "@mantine/core";
 import { ReactElement } from "react";
 import banner from "./img/background.jpeg";
 import faixa from "./img/faixa.svg";
@@ -31,11 +31,11 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: '#00000000',
   },
   fundo: {
-    backgroundImage: `url(${fundo})`,
-    scale: '1/1',
-    minHeight: '600px',
+    // backgroundImage: `url(${fundo})`,
+    // aspectRatio: '3415 / 2447',
+    width: '100vw',
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundPosition: 'bottom',
     marginTop: '-110px',
     position: 'relative',
     zIndex: 1,
@@ -51,8 +51,6 @@ export default function Banner(): ReactElement {
       <div className={classes.banner}>
       </div>
       <div className={classes.logao}>
-      </div>
-      <div className={classes.fundo}>
       </div>
     </>
   );

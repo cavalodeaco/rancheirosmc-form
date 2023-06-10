@@ -25,32 +25,40 @@ import { theme } from "../../utils/theme";
 import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
-import { IconAlertCircle, IconCircleCheck, IconHelmet, IconLicense, IconUserCheck } from "@tabler/icons-react";
+import {
+  IconAlertCircle,
+  IconCircleCheck,
+  IconHelmet,
+  IconLicense,
+  IconUserCheck,
+} from "@tabler/icons-react";
 
-const useStyles = createStyles((mantineTheme) => ({
+const useStyles = createStyles((theme) => ({
   form: {
-    backgroundColor: mantineTheme.white,
-    padding: mantineTheme.spacing.xl,
-    borderRadius: mantineTheme.radius.md,
-    boxShadow: mantineTheme.shadows.lg,
+    backgroundColor: theme.white,
+    padding: theme.spacing.xl,
+    borderRadius: theme.radius.md,
+    boxShadow: theme.shadows.lg,
   },
-
+  brownText: {
+    color: theme.colors.brand[9],
+  },
   input: {
-    backgroundColor: mantineTheme.white,
-    borderColor: mantineTheme.colors.gray[4],
-    color: mantineTheme.black,
+    backgroundColor: theme.white,
+    borderColor: theme.colors.gray[4],
+    color: theme.black,
 
     "&::placeholder": {
-      color: mantineTheme.colors.gray[5],
+      color: theme.colors.gray[5],
     },
   },
 
   inputLabel: {
-    color: mantineTheme.black,
+    color: theme.black,
   },
 
   control: {
-    backgroundColor: mantineTheme.colors[mantineTheme.primaryColor][6],
+    backgroundColor: theme.colors[theme.primaryColor][6],
   },
 }));
 
@@ -167,7 +175,7 @@ export default function EnrollmentForm(): ReactElement {
       };
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND_ADDRESS+"/enroll" as string,
+          (process.env.REACT_APP_BACKEND_ADDRESS + "/enroll") as string,
           config
         );
         const { message } = await response.json();
@@ -199,10 +207,10 @@ export default function EnrollmentForm(): ReactElement {
     <div className={classes.form} style={{ position: "relative" }}>
       <LoadingOverlay visible={loading} overlayBlur={2} />
       <MantineProvider theme={{ ...theme, colorScheme: "light" }}>
-        <Stepper active={active} radius={40}>
+        <Stepper active={active} radius={40} color="brand.6">
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40}>
+              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
                 <IconUserCheck size={25} stroke={1.5} />
               </ThemeIcon>
             }
@@ -211,7 +219,7 @@ export default function EnrollmentForm(): ReactElement {
           </Stepper.Step>
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40}>
+              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
                 <IconHelmet size={30} stroke={1.5} />
               </ThemeIcon>
             }
@@ -220,7 +228,7 @@ export default function EnrollmentForm(): ReactElement {
           </Stepper.Step>
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40}>
+              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
                 <IconLicense size={30} stroke={1.5} />
               </ThemeIcon>
             }
@@ -308,14 +316,14 @@ export default function EnrollmentForm(): ReactElement {
         {active !== 3 && (
           <Group position="right" mt="xl">
             {active !== 0 && (
-              <Button variant="outline" onClick={prevStep}>
+              <Button variant="light" onClick={prevStep} className={classes.brownText}>
                 Anterior
               </Button>
             )}
             {active === 2 ? (
-              <Button onClick={submitForm}>Enviar</Button>
+              <Button onClick={submitForm} className={classes.brownText}>Enviar</Button>
             ) : (
-              <Button onClick={nextStep}>Próximo</Button>
+              <Button onClick={nextStep} className={classes.brownText}>Próximo</Button>
             )}
           </Group>
         )}
