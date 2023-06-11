@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 0,
     // backgroundColor: theme.colors.brand[0],
     backgroundImage: `url(${fundo})`,
-    backgroundPosition: 'center',
+    backgroundPosition: '50% 0%',
     backgroundSize: 'cover',
     color: '#2B0604',
     // padding: "5rem",

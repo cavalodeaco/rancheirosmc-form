@@ -17,7 +17,7 @@ import {
 import { IconSchool, IconCoinOff, IconHelmet, TablerIcon } from "@tabler/icons";
 import { ReactElement } from "react";
 import { v4 } from "uuid";
-import logo from "./img/logo.webp";
+import brasao from "./img/brasao.webp";
 
 const data = [
   {
@@ -174,7 +174,7 @@ export function About(): ReactElement {
               <Box className={classes.image}>
                 <Anchor href="https://www.rancheirosmc.com.br/" target="_blank">
                   <Image
-                    src={logo}
+                    src={brasao}
                     alt="Rancheiros Moto Clube"
                     withPlaceholder
                   />
