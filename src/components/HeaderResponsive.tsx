@@ -136,7 +136,8 @@ export function HeaderResponsive(): ReactElement {
           <Image
             src={logo}
             height={"32px"}
-            sx={{ border: "1px solid #F5E02C", borderRadius: '15%' }}
+            width={"32px"}
+            sx={{ border: "1px solid #F5E02C", borderRadius: '15%', paddingRight: '32px' }}
           >
             Manobras Para Vida
           </Image>
