@@ -4,22 +4,22 @@ export const theme: MantineThemeOverride = {
   colorScheme: "dark",
   colors: {
     brand: [
-      "#D8CAA3",
-      "#D7C082",
-      "#DCBA5E",
-      "#E8B834",
-      "#FFBB04", // <- primary shade color
-      "#D29F17",
-      "#AC8826",
-      "#8F752E",
-      "#786532",
-      "#665833"
+        "#F2F09E",
+        "#DED7A3",
+        "#DED480",
+        "#E5D659",
+        "#F5E02C", // <-- primary shade
+        "#DDCA27",
+        "#B9AB31",
+        "#9A9038",
+        "#827B3B",
+        "#2B0604"
     ],
   },
   primaryColor: 'brand',
-  primaryShade: 5,
+  primaryShade: 4,
   headings: {
-    fontFamily: 'Comfortaa, Ubuntu, sans-serif',
-    fontWeight: 'normal',
+    fontFamily: `'Lato', sans-serif`,
+    fontWeight: 'bold',
   },
 };

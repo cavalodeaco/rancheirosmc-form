@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState } from "react";
 import {
   createStyles,
   Title,
@@ -11,106 +11,105 @@ import {
   Anchor,
   Center,
   Space,
-} from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import logo from './img/logo.webp';
+  Menu,
+  Drawer,
+  Image,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import header from "./img/header.svg";
+import logo from "./img/logo.webp";
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 80;
 
 const useStyles = createStyles((theme) => ({
   root: {
-    position: 'fixed',
-    zIndex: 2,
-  },
-
-  dropdown: {
-    position: 'absolute',
-    top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
-    zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopWidth: 0,
-    overflow: 'hidden',
-
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
+    position: "absolute",
+    backgroundImage: `url(${header})`,
+    backgroundColor: "#f5e02c",
+    backgroundSize: "contain",
+    borderBottom: `0px`,
+    ["@media (max-width: 600px)"]: {
+      backgroundSize: "cover",
+      backgroundPosition: "0% 100%",
     },
+    zIndex: 3,
   },
 
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 
   links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
     },
   },
 
   burger: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
     },
   },
 
   link: {
-    display: 'block',
+    display: "block",
     lineHeight: 1,
-    padding: '8px 12px',
+    padding: "8px 12px",
     borderRadius: theme.radius.sm,
-    textDecoration: 'none',
+    textDecoration: "none",
     color: theme.colors.dark[0],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
-    '&:hover': {
-      backgroundColor: theme.colors.dark[6],
+    "&:hover": {
+      backgroundColor: theme.colors.brand[4],
+      color: theme.colors.dark[9],
     },
 
-    [theme.fn.smallerThan('sm')]: {
+    [theme.fn.smallerThan("sm")]: {
       borderRadius: 0,
       padding: theme.spacing.md,
+      backgroundColor: theme.colors.dark[7],
+      color: theme.colors.brand[4],
+      "&:hover": {
+        backgroundColor: theme.colors.brand[4],
+        color: theme.colors.dark[5],
+      },
     },
   },
 
   linkActive: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({
-        variant: 'filled',
-        color: theme.primaryColor,
-      }).background,
-      color: theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-        .color,
+    "&, &:hover": {
+      backgroundColor: theme.colors.brand[4],
+      color: theme.colors.dark[9],
     },
   },
 }));
 
 const links = [
   {
-    link: '/#sobre',
-    label: 'Sobre',
-    target: '_self',
+    link: "/#sobre",
+    label: "Sobre o treinamento",
+    target: "_self",
   },
   {
-    link: 'https://www.rancheirosmc.com.br/',
-    label: 'Rancheiros MC',
-    target: '_blank',
+    link: "https://www.rancheirosmc.com.br/",
+    label: "Rancheiros MC",
+    target: "_blank",
   },
   {
-    link: '/#inscricao',
-    label: 'Inscreva-se',
-    target: '_self',
-  }
+    link: "/#inscricao",
+    label: "Inscreva-se",
+    target: "_self",
+  },
 ];
 
 export function HeaderResponsive(): ReactElement {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState<string | undefined>();
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
@@ -133,13 +132,15 @@ export function HeaderResponsive(): ReactElement {
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <Title order={2} transform="uppercase" color='white'>
-          <Center>
-            {/* <img src={logo} alt="Manobras para Vida" height={36} /> */}
-            <Space w="xs" />
-            Manobras para Vida
-          </Center>
-        </Title>
+        <Anchor href="#">
+          <Image
+            src={logo}
+            height={"32px"}
+            sx={{ border: "1px solid #F5E02C", borderRadius: '15%' }}
+          >
+            Manobras Para Vida
+          </Image>
+        </Anchor>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
@@ -150,14 +151,9 @@ export function HeaderResponsive(): ReactElement {
           className={classes.burger}
           size="sm"
         />
-
-        <Transition transition="scale-y" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
+        <Drawer opened={opened} onClose={close} position="right">
+          {items}
+        </Drawer>
       </Container>
     </Header>
   );

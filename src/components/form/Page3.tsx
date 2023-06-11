@@ -27,7 +27,7 @@ export default function Page1({
           <ScrollArea style={{ height: 60 }}>{authorization}</ScrollArea>
         }
       >
-        <Switch value="true" label="Li e concordo" />
+        <Switch value="true" label="Li e concordo" color="brand.6"/>
       </Switch.Group>
       <Switch.Group
         mt="md"
@@ -45,7 +45,7 @@ export default function Page1({
           <ScrollArea style={{ height: 60 }}>{responsibility}</ScrollArea>
         }
       >
-        <Switch value="true" label="Li e concordo" />
+        <Switch value="true" label="Li e concordo" color="brand.6"/>
       </Switch.Group>
 
       <Switch.Group
@@ -59,7 +59,7 @@ export default function Page1({
         }}
         description={<ScrollArea style={{ height: 60 }}>{lgpd}</ScrollArea>}
       >
-        <Switch value="true" label="Li e concordo" />
+        <Switch value="true" label="Li e concordo" color="brand.6"/>
       </Switch.Group>
     </>
   );

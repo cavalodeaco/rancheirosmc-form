@@ -1,39 +1,57 @@
-import { Center, createStyles, MediaQuery, Title } from "@mantine/core";
+import { Center, createStyles, Image, MediaQuery, Title } from "@mantine/core";
 import { ReactElement } from "react";
 import banner from "./img/background.jpeg";
+import faixa from "./img/faixa.svg";
+import logao from "./img/logao.svg";
+import fundo from "./img/fundo.webp";
 
 const useStyles = createStyles((theme) => ({
   banner: {
-    minHeight: "calc(100vh - 60px)",
-    backgroundImage: `url(${banner})`,
-    backgroundSize: "cover",
-    backgroundPosition: "50% 100%",
-    paddingTop: "20%",
-    // filter: "sepia(1)"
+    height: "120px",
+    backgroundImage: `url(${faixa})`,
+    backgroundSize: 'contain',
+    borderBottom: `0px`,
+    ['@media (max-width: 600px)']: {
+      backgroundSize: 'cover',
+      backgroundPosition: '0% 100%',
+    },
+    marginTop: '-8px',
+    position: 'relative',
+    zIndex: 2,
   },
-  blackground: { 
-    backgroundColor: "#0000008c",
-    height: "100%"
-  }
+  logao: {
+    height: "240px",
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    marginTop: '-140px',
+    position: 'relative',
+    zIndex: 3,
+    backgroundImage: `url(${logao})`,
+    backgroundColor: '#00000000',
+  },
+  fundo: {
+    // backgroundImage: `url(${fundo})`,
+    // aspectRatio: '3415 / 2447',
+    width: '100vw',
+    backgroundSize: 'cover',
+    backgroundPosition: 'bottom',
+    marginTop: '-110px',
+    position: 'relative',
+    zIndex: 1,
+  },
+
 }));
 
 export default function Banner(): ReactElement {
   const { classes } = useStyles();
 
   return (
-    <div className={classes.banner}>
-      <div className={classes.blackground}>
-        <Center>
-          <MediaQuery
-            query="(min-width: 700px)"
-            styles={{
-              fontSize: "5rem",
-            }}
-          >
-            <Title color={"white"} size={"2.5rem"}>Manobras para Vida</Title>
-          </MediaQuery>
-        </Center>
+    <>
+      <div className={classes.banner}>
       </div>
-    </div>
+      <div className={classes.logao}>
+      </div>
+    </>
   );
 }
