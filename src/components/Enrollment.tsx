@@ -14,13 +14,16 @@ import "dayjs/locale/pt-br";
 import { ReactElement } from "react";
 import EnrollmentForm from "./form/EnrollmentForm";
 import { IconTrafficCone } from "@tabler/icons-react";
+import fundo from './img/fundo.webp';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     minHeight: 400,
     boxSizing: "border-box",
     borderRadius: 0,
-    backgroundColor: theme.colors.brand[0],
+    // backgroundColor: theme.colors.brand[0],
+    backgroundImage: `url(${fundo})`,
+    backgroundSize: 'cover',
     color: '#2B0604',
     // padding: "5rem",
     marginTop: "-110px",
