@@ -69,13 +69,12 @@ export function Feature({
 
 const useStyles = createStyles((theme) => ({
   backgroundGradient: {
-    backgroundColor: theme.colors.brand[9],
     color: theme.colors.gray[0],
-    // backgroundImage: theme.fn.gradient({
-    //   from: "dark.6",
-    //   to: "dark.9",
-    //   deg: 180,
-    // }),
+    backgroundImage: theme.fn.gradient({
+      from: "brand.9",
+      to: "dark.9",
+      deg: 165,
+    }),
   },
 
   wrapper: {
