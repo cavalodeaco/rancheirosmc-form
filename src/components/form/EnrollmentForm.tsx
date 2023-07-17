@@ -89,7 +89,15 @@ const page1Schema = z.object({
   }),
 });
 
-const page2Schema = z.object({});
+const page2Schema = z.object({
+  user: z.object({
+    email: z
+      .string()
+      .email("Endereço de e-mail inválido")
+      .optional()
+      .or(z.literal("")),
+  }),
+});
 
 const page3Schema = z.object({
   enroll: z.object({
