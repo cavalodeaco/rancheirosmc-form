@@ -64,7 +64,10 @@ const useStyles = createStyles((theme) => ({
 
 const page1Schema = z.object({
   user: z.object({
-    name: z.string().min(1, { message: "O campo nome é obrigatório" }),
+    name: z
+      .string()
+      .regex(/^\D*$/, "O nome não deve conter números")
+      .min(1, { message: "O campo nome é obrigatório" }),
     phone: z.custom((phone) => validateBr.celular(phone), {
       message: "Informe um número de celular",
     }),
@@ -86,7 +89,15 @@ const page1Schema = z.object({
   }),
 });
 
-const page2Schema = z.object({});
+const page2Schema = z.object({
+  user: z.object({
+    email: z
+      .string()
+      .email("Endereço de e-mail inválido")
+      .optional()
+      .or(z.literal("")),
+  }),
+});
 
 const page3Schema = z.object({
   enroll: z.object({
@@ -210,7 +221,12 @@ export default function EnrollmentForm(): ReactElement {
         <Stepper active={active} radius={40} color="brand.6">
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
+              <ThemeIcon
+                variant="filled"
+                size={40}
+                radius={40}
+                className={classes.brownText}
+              >
                 <IconUserCheck size={25} stroke={1.5} />
               </ThemeIcon>
             }
@@ -219,7 +235,12 @@ export default function EnrollmentForm(): ReactElement {
           </Stepper.Step>
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
+              <ThemeIcon
+                variant="filled"
+                size={40}
+                radius={40}
+                className={classes.brownText}
+              >
                 <IconHelmet size={30} stroke={1.5} />
               </ThemeIcon>
             }
@@ -228,7 +249,12 @@ export default function EnrollmentForm(): ReactElement {
           </Stepper.Step>
           <Stepper.Step
             icon={
-              <ThemeIcon variant="filled" size={40} radius={40} className={classes.brownText}>
+              <ThemeIcon
+                variant="filled"
+                size={40}
+                radius={40}
+                className={classes.brownText}
+              >
                 <IconLicense size={30} stroke={1.5} />
               </ThemeIcon>
             }
@@ -316,14 +342,22 @@ export default function EnrollmentForm(): ReactElement {
         {active !== 3 && (
           <Group position="right" mt="xl">
             {active !== 0 && (
-              <Button variant="light" onClick={prevStep} className={classes.brownText}>
+              <Button
+                variant="light"
+                onClick={prevStep}
+                className={classes.brownText}
+              >
                 Anterior
               </Button>
             )}
             {active === 2 ? (
-              <Button onClick={submitForm} className={classes.brownText}>Enviar</Button>
+              <Button onClick={submitForm} className={classes.brownText}>
+                Enviar
+              </Button>
             ) : (
-              <Button onClick={nextStep} className={classes.brownText}>Próximo</Button>
+              <Button onClick={nextStep} className={classes.brownText}>
+                Próximo
+              </Button>
             )}
           </Group>
         )}

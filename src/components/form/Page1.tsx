@@ -47,6 +47,7 @@ export default function Page1({
         }}
         withAsterisk
         {...page1.getInputProps("user.name")}
+        
       />
       <TextInput
         label="Celular/WhatsApp"
