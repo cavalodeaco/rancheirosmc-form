@@ -132,6 +132,7 @@ export default function Page1({
           { value: "maringa", label: "Maringá" },
           { value: "londrina", label: "Londrina" },
           { value: "cambira", label: "Cambira/Jandaia do Sul" },
+          { value: "medianeira", label: "Medianeira" },
         ]}
       />
     </>
