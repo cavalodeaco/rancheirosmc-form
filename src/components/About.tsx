@@ -73,7 +73,7 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: theme.fn.gradient({
       from: "brand.9",
       to: "dark.9",
-      deg: 165,
+      deg: 180,
     }),
   },
 
