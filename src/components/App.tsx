@@ -7,6 +7,7 @@ import Linkable from "./Linkable";
 import Enrollment from "./Enrollment";
 import Banner from "./Banner";
 import { About } from "./About";
+import { Contribute } from "./Contribute";
 
 export default function App() {
   document.title = "MANOBRAS PARA VIDA";
@@ -20,6 +21,9 @@ export default function App() {
         </Linkable>
         <Linkable id="sobre">
           <About />
+        </Linkable>
+        <Linkable id="contribua">
+          <Contribute />
         </Linkable>
       </AppShell>
     </MantineProvider>
