@@ -21,18 +21,25 @@ const useStyles = createStyles((theme) => ({
       to: "dark.9",
       deg: 180,
     }),
-    padding: "1rem",
+    textAlign: "center",
+    padding: theme.spacing.xl * 2,
+
+    li: {
+      listStyleType: "none",
+    },
   },
 
   volunteer: {
     backgroundColor: theme.white,
-    padding: theme.spacing.xl,
+    padding: theme.spacing.xl * 2,
     borderRadius: theme.radius.md,
     boxShadow: theme.shadows.lg,
+    textAlign: "center",
   },
 
   background: {
     backgroundImage: `url(${poly})`,
+    minHeight: 700,
     backgroundSize: "cover",
     color: "#2B0604",
     paddingTop: `110px`,
@@ -46,10 +53,10 @@ export function Contribute(): ReactElement {
   return (
     <div className={classes.background}>
       <Container>
-        <Title my={30} order={3} color="black">
+        <Title my={30} order={3} color="black" align="center">
           Como posso ajudar?
         </Title>
-        <SimpleGrid cols={2} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
+        <SimpleGrid cols={1} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
           <Box className={classes.volunteer}>
             <Title order={4}>🫵 Seja Voluntário!</Title>
             <Text mt={"md"}>
@@ -64,12 +71,12 @@ export function Contribute(): ReactElement {
                 color: theme.colors.brand[9],
               }}
             >
-              https://www.rancheirosmc.com.br/#contato
+              rancheirosmc.com.br/#contato
             </Button>
           </Box>
           <Box className={classes.contribute}>
             <Title order={4}>🤝 Contribua financeiramente!</Title>
-            <Text mt={"md"}>PIX:</Text>
+            <Text mt={"md"}>PIX</Text>
             <List mt={"xs`"}>
               <List.Item>RANCHEIROS MC - RANCHO RAIZ</List.Item>
               <List.Item>CNPJ: 44.363.528/0001-09</List.Item>
