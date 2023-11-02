@@ -133,6 +133,7 @@ export default function Page1({
           { value: "londrina", label: "Londrina" },
           { value: "cambira", label: "Cambira/Jandaia do Sul" },
           { value: "medianeira", label: "Medianeira" },
+          { value: "curitiba", label: "Curitiba" },
         ]}
       />
     </>
