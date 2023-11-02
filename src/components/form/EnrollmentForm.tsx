@@ -78,7 +78,7 @@ const page1Schema = z.object({
   enroll: z.object({
     city: z.custom(
       (city) => {
-        const cities = ["maringa", "londrina", "cambira", "medianeira"];
+        const cities = ["maringa", "londrina", "cambira", "medianeira", "curitiba"];
         return cities.includes(city as string);
       },
       {
