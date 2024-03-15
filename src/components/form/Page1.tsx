@@ -61,7 +61,7 @@ export default function Page1({
           label: classes.inputLabel,
         }}
       />
-      <Grid align="flex-end" justify="space-between" m="0">
+      <Grid align="baseline" justify="space-between" m="0">
         <TextInput
           label="Número da CNH"
           placeholder="00123456789"
@@ -133,6 +133,7 @@ export default function Page1({
           { value: "londrina", label: "Londrina" },
           { value: "cambira", label: "Cambira/Jandaia do Sul" },
           { value: "medianeira", label: "Medianeira" },
+          { value: "arapongas", label: "Arapongas" },
           { value: "curitiba", label: "Curitiba" },
         ]}
       />
