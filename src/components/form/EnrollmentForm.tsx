@@ -85,6 +85,9 @@ const page1Schema = z.object({
           "medianeira",
           "arapongas",
           "curitiba",
+          "apucarana",
+          "cornelio",
+          "ivate",
         ];
         return cities.includes(city as string);
       },

@@ -47,7 +47,6 @@ export default function Page1({
         }}
         withAsterisk
         {...page1.getInputProps("user.name")}
-        
       />
       <TextInput
         label="Celular/WhatsApp"
@@ -128,6 +127,7 @@ export default function Page1({
           input: classes.input,
           label: classes.inputLabel,
         }}
+        searchable
         data={[
           { value: "maringa", label: "Maringá" },
           { value: "londrina", label: "Londrina" },
@@ -135,7 +135,10 @@ export default function Page1({
           { value: "medianeira", label: "Medianeira" },
           { value: "arapongas", label: "Arapongas" },
           { value: "curitiba", label: "Curitiba" },
-        ]}
+          { value: "apucarana", label: "Apucarana" },
+          { value: "cornelio", label: "Cornélio Procópio" },
+          { value: "ivate", label: "Ivaté 22/03/2025" },
+        ].sort((a, b) => (a.value < b.value ? -1 : 1))}
       />
     </>
   );
