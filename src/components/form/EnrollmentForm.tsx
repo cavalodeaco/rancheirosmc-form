@@ -88,6 +88,8 @@ const page1Schema = z.object({
           "apucarana",
           "cornelio",
           "ivate",
+          "guarulhos",
+          "faxinal",
         ];
         return cities.includes(city as string);
       },
