@@ -135,6 +135,8 @@ export default function Page1({
           { value: "medianeira", label: "Medianeira" },
           { value: "arapongas", label: "Arapongas" },
           { value: "curitiba", label: "Curitiba" },
+          { value: "guarulhos", label: "Guarulhos-SP" },
+          { value: "faxinal", label: "Faxinal" },
           { value: "apucarana", label: "Apucarana" },
           { value: "cornelio", label: "Cornélio Procópio" },
           { value: "ivate", label: "Ivaté 22/03/2025" },
