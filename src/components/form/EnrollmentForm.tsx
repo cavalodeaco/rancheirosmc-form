@@ -86,6 +86,7 @@ const page1Schema = z.object({
           "arapongas",
           "curitiba",
           "apucarana",
+          "nova_esperanca",
           "cornelio",
           "ivate",
           "guarulhos",

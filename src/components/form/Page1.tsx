@@ -138,6 +138,7 @@ export default function Page1({
           { value: "guarulhos", label: "Guarulhos-SP" },
           { value: "faxinal", label: "Faxinal" },
           { value: "apucarana", label: "Apucarana" },
+          { value: "nova_esperanca", label: "Nova Esperança" },
           { value: "cornelio", label: "Cornélio Procópio" },
           { value: "ivate", label: "Ivaté 22/03/2025" },
         ].sort((a, b) => (a.value < b.value ? -1 : 1))}
