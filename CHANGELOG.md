@@ -8,6 +8,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Added
+- **Novas funcionalidades serão documentadas aqui**
+
+### Changed
+- **Mudanças em funcionalidades existentes serão documentadas aqui**
+
+### Fixed
+- **Correções de bugs serão documentadas aqui**
+
+### Enhanced
+- **Melhorias de performance e UX serão documentadas aqui**
+
+### Technical
+- **Mudanças técnicas e de infraestrutura serão documentadas aqui**
+
+## [2.0.0] - 2025-01-16
+
+### Pull Requests
+- **PR #15**: 🚀 Migração para Nova API Pública - Integração Completa - [Ver PR](https://github.com/cavalodeaco/rancheirosmc-form/pull/15)
+
+### Added
 - **Integração com API Pública**: Integração completa com nova API pública do backend
   - Busca automática de cidades disponíveis via `/locations/public/cities`
   - Envio de inscrições via `/enrollments/public`
