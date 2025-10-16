@@ -12,6 +12,7 @@ import { ReactElement } from "react";
 export default function Page1({
   page1,
   useStyles,
+  cities,
 }: {
   page1: UseFormReturnType<{
     user: {
@@ -20,7 +21,7 @@ export default function Page1({
       driverLicense: string;
       driverLicenseUF: string;
     };
-    enroll: { city: string };
+    enroll: { cityId: string };
   }>;
   useStyles: (
     params: void,
@@ -32,6 +33,7 @@ export default function Page1({
     cx: (...args: unknown[]) => string;
     theme: MantineTheme;
   };
+  cities: Array<{ id: string; name: string }>;
 }): ReactElement {
   const { classes } = useStyles();
 
@@ -122,26 +124,16 @@ export default function Page1({
         mt="md"
         placeholder="Escolha a cidade"
         withAsterisk
-        {...page1.getInputProps("enroll.city")}
+        {...page1.getInputProps("enroll.cityId")}
         classNames={{
           input: classes.input,
           label: classes.inputLabel,
         }}
         searchable
-        data={[
-          { value: "maringa", label: "Maringá" },
-          { value: "londrina", label: "Londrina" },
-          { value: "cambira", label: "Cambira/Jandaia do Sul" },
-          { value: "medianeira", label: "Medianeira" },
-          { value: "arapongas", label: "Arapongas" },
-          { value: "curitiba", label: "Curitiba" },
-          { value: "guarulhos", label: "Guarulhos-SP" },
-          { value: "faxinal", label: "Faxinal" },
-          { value: "apucarana", label: "Apucarana" },
-          { value: "nova_esperanca", label: "Nova Esperança" },
-          { value: "cornelio", label: "Cornélio Procópio" },
-          { value: "ivate", label: "Ivaté 22/03/2025" },
-        ].sort((a, b) => (a.value < b.value ? -1 : 1))}
+        data={cities.map(city => ({
+          value: city.id,
+          label: city.name,
+        })).sort((a, b) => (a.label < b.label ? -1 : 1))}
       />
     </>
   );

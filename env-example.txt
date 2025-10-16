@@ -1,0 +1,3 @@
+# Configuração do Backend
+# URL base do backend rancheiros-backend
+REACT_APP_BACKEND_ADDRESS=http://localhost:3000
