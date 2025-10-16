@@ -16,7 +16,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import "dayjs/locale/pt-br";
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, useEffect } from "react";
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 import { validateBr } from "js-brasil";
@@ -76,29 +76,9 @@ const page1Schema = z.object({
     }),
   }),
   enroll: z.object({
-    city: z.custom(
-      (city) => {
-        const cities = [
-          "maringa",
-          "londrina",
-          "cambira",
-          "medianeira",
-          "arapongas",
-          "curitiba",
-          "apucarana",
-          "nova_esperanca",
-          "cornelio",
-          "ivate",
-          "guarulhos",
-          "faxinal",
-        ];
-        return cities.includes(city as string);
-      },
-      {
-        message:
-          "Selecione uma das opções de cidade para a realização do curso",
-      }
-    ),
+    cityId: z.string().min(1, {
+      message: "Selecione uma cidade para a realização do curso",
+    }),
   }),
 });
 
@@ -142,7 +122,7 @@ export default function EnrollmentForm(): ReactElement {
         driverLicenseUF: "PR",
       },
       enroll: {
-        city: "",
+        cityId: "",
       },
     },
   });
@@ -183,26 +163,50 @@ export default function EnrollmentForm(): ReactElement {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(0);
+  const [cities, setCities] = useState([]);
+
+  // Buscar cidades disponíveis ao carregar o componente
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/locations/public/cities`);
+        if (response.ok) {
+          const citiesData = await response.json();
+          setCities(citiesData);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar cidades:', error);
+      }
+    };
+    
+    fetchCities();
+  }, []);
 
   const prevStep = (): void => setActive((current) => current - 1);
 
   const submitForm = async (): Promise<void> => {
     if (!form[form.length - 1].validate().hasErrors) {
       setLoading(true);
+      
+      // Remover os termos dos dados enviados (manter apenas no form)
+      const { terms, ...enrollData } = page3.values.enroll;
       const data = JSON.stringify(
-        merge({}, page1.values, page2.values, page3.values)
+        merge({}, page1.values, page2.values, { enroll: enrollData })
       );
+      
       const config = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: data,
       };
+      
       try {
         const response = await fetch(
-          (process.env.REACT_APP_BACKEND_ADDRESS + "/enroll") as string,
+          `${process.env.REACT_APP_BACKEND_ADDRESS}/enrollments/public`,
           config
         );
         const { message } = await response.json();
+        
         if (response.status === 201 && message === "enrolled") {
           setResult(1);
         } else if (response.status === 409 && message === "waiting") {
@@ -244,7 +248,7 @@ export default function EnrollmentForm(): ReactElement {
               </ThemeIcon>
             }
           >
-            <Page1 page1={page1} useStyles={useStyles} />
+            <Page1 page1={page1} useStyles={useStyles} cities={cities} />
           </Stepper.Step>
           <Stepper.Step
             icon={

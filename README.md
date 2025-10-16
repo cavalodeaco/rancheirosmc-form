@@ -1,46 +1,245 @@
-# Getting Started with Create React App
+# 🏍️ Rancheiros MC - Formulário de Inscrição
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Formulário público de inscrição para cursos de motociclismo da Rancheiros MC. Este projeto permite que interessados se inscrevam para participar dos cursos oferecidos pela organização.
 
-## Available Scripts
+## 📋 Sobre o Projeto
 
-In the project directory, you can run:
+O **Rancheiros MC Form** é uma aplicação React que oferece um formulário de inscrição em múltiplas etapas para cursos de motociclismo. O sistema permite que usuários se inscrevam de forma simples e intuitiva, com validação em tempo real e integração com a API do backend.
+
+### 🎯 Funcionalidades
+
+- **Formulário Multi-etapas**: Interface dividida em 3 etapas para melhor experiência do usuário
+- **Validação em Tempo Real**: Validação client-side com feedback imediato
+- **Seleção Dinâmica de Cidades**: Cidades carregadas automaticamente da API
+- **Validação Brasileira**: Validação de CPF, CNH e telefone usando padrões brasileiros
+- **Responsivo**: Interface adaptável para desktop e mobile
+- **Acessível**: Componentes acessíveis com Mantine UI
+
+## 🚀 Tecnologias Utilizadas
+
+- **React 18** - Biblioteca principal
+- **TypeScript** - Tipagem estática
+- **Mantine UI** - Componentes de interface
+- **Zod** - Validação de schemas
+- **js-brasil** - Validação de documentos brasileiros
+- **Create React App** - Tooling e build
+
+## 📦 Instalação
+
+### Pré-requisitos
+
+- Node.js (versão 22 ou superior)
+- npm (versão 10 ou superior)
+- Backend rancheiros-backend rodando
+
+### Passos para Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone <url-do-repositorio>
+   cd rancheirosmc-form
+   ```
+
+2. **Configure a versão do Node.js**
+   ```bash
+   # Se usando nvm
+   nvm use
+   
+   # Ou instale a versão 22
+   nvm install 22
+   nvm use 22
+   ```
+
+3. **Instale as dependências**
+   ```bash
+   npm install
+   ```
+
+4. **Configure as variáveis de ambiente**
+   ```bash
+   cp env-example.txt .env
+   ```
+   
+   Edite o arquivo `.env` e configure:
+   ```env
+   REACT_APP_BACKEND_ADDRESS=http://localhost:3000
+   ```
+
+5. **Inicie o servidor de desenvolvimento**
+   ```bash
+   npm start
+   ```
+
+6. **Acesse a aplicação**
+   ```
+   http://localhost:3000
+   ```
+
+## 🛠️ Scripts Disponíveis
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Inicia o servidor de desenvolvimento.\
+Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Executa os testes em modo interativo.
 
 ### `npm run build`
+Cria a versão de produção na pasta `build`.\
+O build é otimizado e minificado para melhor performance.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run eslint`
+Executa o linter para verificar e corrigir problemas de código.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📝 Estrutura do Formulário
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Etapa 1: Dados Pessoais
+- **Nome completo** (obrigatório)
+- **Telefone** (obrigatório, formato brasileiro)
+- **CNH** (obrigatório, validação brasileira)
+- **UF da CNH** (obrigatório)
+- **Cidade do treinamento** (obrigatório, seleção dinâmica)
 
-### `npm run eject`
+### Etapa 2: Informações Adicionais
+- **Email** (opcional)
+- **Uso da motocicleta** (obrigatório)
+  - Instrumento de trabalho (motofretista)
+  - Deslocamentos casa – trabalho
+  - Somente lazer
+- **Marca da moto** (opcional)
+- **Modelo da moto** (opcional)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Etapa 3: Termos e Condições
+- **Aceite dos termos** (obrigatório)
+- **Confirmação final**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔧 Configuração
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Variáveis de Ambiente
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Variável | Descrição | Exemplo |
+|----------|-----------|---------|
+| `REACT_APP_BACKEND_ADDRESS` | URL base do backend | `http://localhost:3000` |
 
-## Learn More
+### Integração com Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+O formulário se integra com os seguintes endpoints:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **GET** `/locations/public/cities` - Busca cidades disponíveis
+- **POST** `/enrollments/public` - Envia inscrição
+
+## 📊 Fluxo de Dados
+
+```mermaid
+graph TD
+    A[Usuário acessa formulário] --> B[Carrega cidades da API]
+    B --> C[Preenche dados pessoais]
+    C --> D[Preenche informações adicionais]
+    D --> E[Aceita termos]
+    E --> F[Envia inscrição]
+    F --> G{Resposta da API}
+    G -->|201| H[Inscrição confirmada]
+    G -->|409| I[Já inscrito]
+    G -->|400/500| J[Erro]
+```
+
+## 🎨 Interface
+
+### Componentes Principais
+
+- **EnrollmentForm**: Componente principal do formulário
+- **Page1**: Primeira etapa (dados pessoais)
+- **Page2**: Segunda etapa (informações adicionais)
+- **Page3**: Terceira etapa (termos e condições)
+
+### Temas e Estilos
+
+- Design responsivo com Mantine UI
+- Cores e tipografia consistentes
+- Componentes acessíveis
+- Feedback visual para diferentes estados
+
+## 🧪 Testes
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes em modo watch
+npm test -- --watch
+
+# Executar testes com coverage
+npm test -- --coverage
+```
+
+## 📦 Build para Produção
+
+```bash
+# Criar build de produção
+npm run build
+
+# Servir build localmente (opcional)
+npx serve -s build
+```
+
+## 🚀 Deploy
+
+### Opções de Deploy
+
+1. **Netlify**
+   - Conecte o repositório
+   - Configure build command: `npm run build`
+   - Configure publish directory: `build`
+
+2. **Vercel**
+   - Conecte o repositório
+   - Configure framework: Create React App
+   - Deploy automático
+
+3. **Servidor Estático**
+   - Execute `npm run build`
+   - Faça upload da pasta `build` para seu servidor
+
+## 🔍 Troubleshooting
+
+### Problemas Comuns
+
+**Erro de conexão com backend**
+- Verifique se o backend está rodando
+- Confirme a URL em `REACT_APP_BACKEND_ADDRESS`
+- Verifique CORS no backend
+
+**Cidades não carregam**
+- Verifique conexão com internet
+- Confirme endpoint `/locations/public/cities`
+- Verifique logs do console
+
+**Validação não funciona**
+- Verifique se todos os campos obrigatórios estão preenchidos
+- Confirme formato dos dados (telefone, CNH)
+- Verifique logs de erro no console
+
+## 📚 Documentação Adicional
+
+- [Changelog](CHANGELOG.md) - Histórico de mudanças
+- [Mantine UI](https://mantine.dev/) - Documentação dos componentes
+- [Zod](https://zod.dev/) - Documentação de validação
+- [React](https://reactjs.org/) - Documentação do React
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📞 Suporte
+
+Para suporte e dúvidas:
+- Abra uma issue no repositório
+- Entre em contato com a equipe de desenvolvimento
+
+---
+
+**Rancheiros MC** - Formulário de Inscrição v1.0.0
