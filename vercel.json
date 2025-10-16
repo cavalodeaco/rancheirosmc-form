@@ -3,8 +3,5 @@
   "outputDirectory": "build",
   "framework": "create-react-app",
   "installCommand": "npm install",
-  "devCommand": "npm start",
-  "engines": {
-    "node": "22.x"
-  }
+  "devCommand": "npm start"
 }
