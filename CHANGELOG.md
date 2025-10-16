@@ -8,19 +8,40 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Added
-- **Novas funcionalidades serão documentadas aqui**
+- **Configurações de Deploy**: Arquivos de configuração para plataformas de deploy
+  - Arquivo `netlify.toml` para deploy no Netlify com Node.js 22
+  - Arquivo `vercel.json` para deploy no Vercel com Node.js 22
+  - Configurações otimizadas para build e deploy automático
 
 ### Changed
-- **Mudanças em funcionalidades existentes serão documentadas aqui**
+- **Pré-requisitos do Sistema**: Atualizados requisitos mínimos
+  - Node.js atualizado de versão 16+ para versão 22+
+  - npm atualizado para versão 10+
+  - Documentação atualizada com instruções de instalação
 
 ### Fixed
-- **Correções de bugs serão documentadas aqui**
+- **Erro de Versão do Node.js**: Resolvido erro de versão descontinuada
+  - Corrigido erro "Node.js Version 18.x is discontinued and must be upgraded"
+  - Especificação explícita da versão 22.x em arquivos de configuração
+  - Compatibilidade com plataformas de deploy modernas
 
 ### Enhanced
-- **Melhorias de performance e UX serão documentadas aqui**
+- **Performance e Compatibilidade**: Melhorias com Node.js 22
+  - Build otimizado com redução de 10KB no tamanho final
+  - Melhor performance de desenvolvimento e produção
+  - Suporte a recursos mais recentes do JavaScript/TypeScript
+  - Compatibilidade com ferramentas modernas de desenvolvimento
 
 ### Technical
-- **Mudanças técnicas e de infraestrutura serão documentadas aqui**
+- **Atualização para Node.js 22**: Migração completa para Node.js 22.x
+  - Adicionado arquivo `.nvmrc` especificando versão 22
+  - Adicionado arquivo `.node-version` para compatibilidade com ferramentas
+  - Atualizado `package.json` com engines para Node.js >=22.0.0 e npm >=10.0.0
+  - Atualizado `@types/node` de versão 18.x para 22.x
+  - Documentação atualizada no README com instruções de instalação
+  - Instruções para uso com nvm (Node Version Manager)
+  - Build testado e funcionando com Node.js 22
+  - Performance melhorada com versão mais recente do Node.js
 
 ## [2.0.0] - 2025-01-16
 

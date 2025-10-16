@@ -28,8 +28,8 @@ O **Rancheiros MC Form** é uma aplicação React que oferece um formulário de 
 
 ### Pré-requisitos
 
-- Node.js (versão 16 ou superior)
-- npm ou yarn
+- Node.js (versão 22 ou superior)
+- npm (versão 10 ou superior)
 - Backend rancheiros-backend rodando
 
 ### Passos para Instalação
@@ -40,12 +40,22 @@ O **Rancheiros MC Form** é uma aplicação React que oferece um formulário de 
    cd rancheirosmc-form
    ```
 
-2. **Instale as dependências**
+2. **Configure a versão do Node.js**
+   ```bash
+   # Se usando nvm
+   nvm use
+   
+   # Ou instale a versão 22
+   nvm install 22
+   nvm use 22
+   ```
+
+3. **Instale as dependências**
    ```bash
    npm install
    ```
 
-3. **Configure as variáveis de ambiente**
+4. **Configure as variáveis de ambiente**
    ```bash
    cp env-example.txt .env
    ```
@@ -55,12 +65,12 @@ O **Rancheiros MC Form** é uma aplicação React que oferece um formulário de 
    REACT_APP_BACKEND_ADDRESS=http://localhost:3000
    ```
 
-4. **Inicie o servidor de desenvolvimento**
+5. **Inicie o servidor de desenvolvimento**
    ```bash
    npm start
    ```
 
-5. **Acesse a aplicação**
+6. **Acesse a aplicação**
    ```
    http://localhost:3000
    ```
