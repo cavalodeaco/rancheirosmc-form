@@ -13,6 +13,7 @@ export default function Page1({
   page1,
   useStyles,
   cities,
+  loading = false,
 }: {
   page1: UseFormReturnType<{
     user: {
@@ -34,6 +35,7 @@ export default function Page1({
     theme: MantineTheme;
   };
   cities: Array<{ id: string; name: string }>;
+  loading?: boolean;
 }): ReactElement {
   const { classes } = useStyles();
 
@@ -122,7 +124,7 @@ export default function Page1({
       <Select
         label="Cidade do treinamento"
         mt="md"
-        placeholder="Escolha a cidade"
+        placeholder={loading ? "Carregando cidades..." : "Escolha a cidade"}
         withAsterisk
         {...page1.getInputProps("enroll.cityId")}
         classNames={{
@@ -130,6 +132,7 @@ export default function Page1({
           label: classes.inputLabel,
         }}
         searchable
+        disabled={loading}
         data={cities.map(city => ({
           value: city.id,
           label: city.name,

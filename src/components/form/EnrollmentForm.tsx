@@ -16,7 +16,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import "dayjs/locale/pt-br";
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement, useState } from "react";
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 import { validateBr } from "js-brasil";
@@ -25,6 +25,8 @@ import { theme } from "../../utils/theme";
 import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
+import { usePublicCities } from "../../hooks/usePublicCities";
+import { useCreatePublicEnrollment } from "../../hooks/useCreatePublicEnrollment";
 import {
   IconAlertCircle,
   IconCircleCheck,
@@ -161,66 +163,44 @@ export default function EnrollmentForm(): ReactElement {
   const { classes } = useStyles();
 
   const [active, setActive] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(0);
-  const [cities, setCities] = useState([]);
-
-  // Buscar cidades disponíveis ao carregar o componente
-  useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/locations/public/cities`);
-        if (response.ok) {
-          const citiesData = await response.json();
-          setCities(citiesData);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar cidades:', error);
-      }
-    };
-    
-    fetchCities();
-  }, []);
+  
+  // Usar hooks GraphQL
+  const { cities, loading: citiesLoading } = usePublicCities();
+  const { submitEnrollment, loading: enrollmentLoading } = useCreatePublicEnrollment();
 
   const prevStep = (): void => setActive((current) => current - 1);
 
   const submitForm = async (): Promise<void> => {
     if (!form[form.length - 1].validate().hasErrors) {
-      setLoading(true);
-      
       // Remover os termos dos dados enviados (manter apenas no form)
       const { terms, ...enrollData } = page3.values.enroll;
-      const data = JSON.stringify(
-        merge({}, page1.values, page2.values, { enroll: enrollData })
-      );
-      
-      const config = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: data,
-      };
+      const data = merge({}, page1.values, page2.values, { enroll: enrollData });
       
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_ADDRESS}/enrollments/public`,
-          config
-        );
-        const { message } = await response.json();
+        const result = await submitEnrollment(data);
         
-        if (response.status === 201 && message === "enrolled") {
-          setResult(1);
-        } else if (response.status === 409 && message === "waiting") {
-          setResult(2);
+        if (result.success) {
+          // Verificar o status da resposta
+          if (result.status === 'enrolled') {
+            // Inscrição confirmada
+            setResult(1);
+          } else if (result.status === 'waiting') {
+            // Inscrição em lista de espera
+            setResult(2);
+          } else {
+            // Status desconhecido
+            setResult(0);
+          }
         } else {
-          // invalid response
+          // Erro na inscrição
           setResult(0);
         }
       } catch (error) {
-        // failed to fetch or parse json
+        // Erro geral
         setResult(0);
       } finally {
-        // no matter what, stop loading and show next page
-        setLoading(false);
+        // Avançar para próxima página
         setActive((current) => current + 1);
       }
     }
@@ -233,7 +213,7 @@ export default function EnrollmentForm(): ReactElement {
 
   return (
     <div className={classes.form} style={{ position: "relative" }}>
-      <LoadingOverlay visible={loading} overlayBlur={2} />
+      <LoadingOverlay visible={enrollmentLoading} overlayBlur={2} />
       <MantineProvider theme={{ ...theme, colorScheme: "light" }}>
         <Stepper active={active} radius={40} color="brand.6">
           <Stepper.Step
@@ -248,7 +228,7 @@ export default function EnrollmentForm(): ReactElement {
               </ThemeIcon>
             }
           >
-            <Page1 page1={page1} useStyles={useStyles} cities={cities} />
+            <Page1 page1={page1} useStyles={useStyles} cities={cities} loading={citiesLoading} />
           </Stepper.Step>
           <Stepper.Step
             icon={
