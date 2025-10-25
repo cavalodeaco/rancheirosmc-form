@@ -5,22 +5,34 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
-## [Unreleased]
+## [PR #17] - Unreleased
 
 ### Added
-- **Novas funcionalidades serão documentadas aqui**
+- [PR #17] **Migração GraphQL**: Implementação completa de Apollo Client para substituir REST API
+- [PR #17] **Apollo Client**: Configuração completa do Apollo Client
+- [PR #17] **GraphQL Queries**: Queries para cidades e criação de inscrições
+- [PR #17] **Custom Hooks**: Hooks para operações GraphQL
+- [PR #17] **Form Integration**: Integração do formulário com GraphQL
+- [PR #17] **Error Handling**: Tratamento de erros GraphQL
+- [PR #17] **Loading States**: Estados de carregamento
+- [PR #17] **Success Handling**: Tratamento de diferentes status de resposta
+- [PR #17] **Email Validation**: Campo email opcional com validação
 
 ### Changed
-- **Mudanças em funcionalidades existentes serão documentadas aqui**
+- [PR #17] **Arquitetura**: Migração completa de REST para GraphQL
+- [PR #17] **Data Fetching**: Substituição de fetch nativo por Apollo Client
+- [PR #17] **Form Submission**: Sistema de submissão migrado para GraphQL
 
-### Fixed
-- **Correções de bugs serão documentadas aqui**
-
-### Enhanced
-- **Melhorias de performance e UX serão documentadas aqui**
+### Removed
+- [PR #17] **REST API**: Removidas todas as chamadas REST
+- [PR #17] **Fetch Native**: Removido fetch nativo
+- [PR #17] **REST Hooks**: Removidos hooks REST obsoletos
 
 ### Technical
-- **Mudanças técnicas e de infraestrutura serão documentadas aqui**
+- [PR #17] **Apollo Client**: Configuração completa do Apollo Client
+- [PR #17] **GraphQL Schema**: Integração com schema GraphQL do backend
+- [PR #17] **Error Handling**: Tratamento robusto de erros GraphQL
+- [PR #17] **Loading States**: Estados de carregamento nos formulários
 
 ## [2.0.0] - 2025-01-16
 
