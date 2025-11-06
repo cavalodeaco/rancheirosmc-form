@@ -7,6 +7,7 @@
     "npm": ">=10.0.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0",
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.9.5",
     "@mantine/form": "^5.9.5",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^18.0.9",
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^7.0.5",
+    "graphql": "^16.11.0",
     "js-brasil": "^2.5.3",
     "lodash.merge": "^4.6.2",
     "react": "^18.2.0",
